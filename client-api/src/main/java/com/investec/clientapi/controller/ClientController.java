@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import javax.websocket.server.PathParam;
 
 @RestController
@@ -22,12 +23,12 @@ public class ClientController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity createClient(@RequestBody Client client){
+    public ResponseEntity createClient(@Valid @ModelAttribute("client") Client client){
         return new ResponseEntity(clientService.createClient(client), HttpStatus.CREATED);
     }
 
     @PostMapping("/update")
-    public ResponseEntity updateClient(@RequestBody Client client){
+    public ResponseEntity updateClient(@Valid @ModelAttribute("client") Client client){
         return new ResponseEntity(clientService.updateClient(client), HttpStatus.OK);
     }
 

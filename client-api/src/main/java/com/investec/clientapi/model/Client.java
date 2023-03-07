@@ -1,10 +1,18 @@
 package com.investec.clientapi.model;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
 public class Client {
 
     private Integer id;
+
+    @NotBlank(message = "First Name is a mandatory field")
     private String firstName;
+    @NotBlank(message = "Last Name is a mandatory field")
     private String lastName;
+    @Pattern(regexp="^((0)|(27)|(\\+27))(\\d{9})$", message = "Invalid Mobile Number")
     private String mobileNumber;
 
     // can create a separate Address model if the entries might be created independently.
