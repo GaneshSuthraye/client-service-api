@@ -1,7 +1,9 @@
 package com.investec.clientapi.service;
 
+import com.investec.clientapi.entities.Customer;
 import com.investec.clientapi.model.Client;
 import com.investec.clientapi.repository.ClientRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,12 +17,16 @@ public class ClientService {
         return clientRepository.findByMobileNumber(mobileNumber);
     }
 
-    public Client createClient(Client client){
-       return clientRepository.save(client);
+    public Customer createClient(Client client){
+        Customer customer = new Customer();
+        BeanUtils.copyProperties(client,customer);
+        return clientRepository.save(customer);
     }
 
-    public Client updateClient(Client client){
-        return clientRepository.save(client);
+    public Customer updateClient(Client client){
+        Customer customer = new Customer();
+        BeanUtils.copyProperties(client,customer);
+        return clientRepository.save(customer);
     }
 
 }
